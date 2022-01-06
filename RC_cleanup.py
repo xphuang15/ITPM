@@ -29,6 +29,8 @@ def resample(time_data,sig_data,kind='linear'):
     ts_min = min(ts_min, ts_thold_max)
     ts_min = max(ts_min, ts_thold_min)
     time_data_new = np.round(np.arange(start_time,end_time + ts_min,ts_min),2)
+    if time_data_new[-1] > end_time:
+        time_data_new = np.delete(time_data_new,-1)
     fun_sig = interpolate.interp1d(time_data,sig_data,kind=kind,axis=0)
     sig_data_new = fun_sig(time_data_new)
 

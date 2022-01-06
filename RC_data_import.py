@@ -88,9 +88,9 @@ def u_traces_import(path_to_files,filenames,filetype,dynamic_flag=0):
             # if col_labels == None:
             #     raise ValueError("unknown file format")
         
-            ## read the data
+            ## read the data (for each scenario, it has two rows, power and lkg ratio)
             raw_data = np.asarray(list(tmp_reader), dtype=str)
-            case_labels = raw_data[:,0]
+            case_labels = raw_data[2::2,0] 
             u_data = np.asarray(raw_data[:,4:], dtype=np.float64)
             
             fp.close()
